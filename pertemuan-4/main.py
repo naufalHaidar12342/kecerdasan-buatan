@@ -64,5 +64,3 @@ def bfs_goal(peta, mulai, tujuan):
 
 
 bfs_goal(peta_jateng, "C", "L")
-
-# parsing jalur pencarian
