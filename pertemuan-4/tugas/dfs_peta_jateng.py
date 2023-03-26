@@ -1,3 +1,5 @@
+from PIL import Image
+import sys
 peta_jateng_dfs = {
     "Pekalongan": ["Kendal"],
     "Kendal": ["Pekalongan", "Semarang"],
@@ -15,10 +17,7 @@ peta_jateng_dfs = {
 
 
 def readable_city(peta):
-    dictionary_key = []
-    for key in peta.keys():
-        dictionary_key.append(key)
-    return ", ".join(dictionary_key)
+    return ", ".join(peta.keys())
 
 
 def dfs(peta, kota_asal, kota_tujuan, visited=None):
@@ -34,18 +33,40 @@ def dfs(peta, kota_asal, kota_tujuan, visited=None):
                 return [kota_asal] + jalur
 
 
-def human_readable_dfs_path(dfs_function):
-    if dfs_function is not None:
-        return " -> ".join(dfs_function)
+def shows_peta_jateng():
+    try:
+        img = Image.open("pertemuan-4\peta_jateng.jpeg")
+        img.show()
+    except FileNotFoundError:
+        print("File tidak ditemukan. Silahkan cek kembali file path.")
+        sys.exit(1)
 
 
-def main_function():
+def program_introduction():
     print("=====================================")
     print("DFS dengan Peta Jawa Tengah")
     print("Daftar kota: ", readable_city(peta_jateng_dfs))
+
+
+def dfs_dynamic():
+    print("DFS dengan Peta Jawa Tengah secara dinamis")
+    kota_asal = input("Masukkan kota asal: ")
+    kota_tujuan = input("Masukkan kota tujuan: ")
+    rute_perjalanan = dfs(peta_jateng_dfs, kota_asal, kota_tujuan)
+
+    if rute_perjalanan is not None:
+        print("Jalur ditempuh dari {} ke {}: {}".format(
+            kota_asal, kota_tujuan, " -> ".join(rute_perjalanan)))
+    else:
+        print("Tidak ada jalur dari {} ke {}".format(
+            kota_asal, kota_tujuan), ". Silahkan coba dengan kota lain.")
+
+
+def main_function():
+    program_introduction()
     print(
-        "jalur ditempuh dari Semarang ke Surakarta: ",
-        dfs(peta_jateng_dfs, "Semarang", "Surakarta")
+        "Jalur ditempuh dari Semarang ke Surakarta: ", " -> ".join(
+            dfs(peta_jateng_dfs, "Semarang", "Surakarta"))
     )
 
 
