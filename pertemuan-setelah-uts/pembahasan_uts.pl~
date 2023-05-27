@@ -1,0 +1,4 @@
+binatang(sapi).   % Example: Sapi is an animal
+taring(X) :- binatang(X).
+makanan(X, daging) :- taring(X).
+

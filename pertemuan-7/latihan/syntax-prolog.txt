@@ -1,0 +1,4 @@
+operator logika: 
+or = 
+and =
+if then=
