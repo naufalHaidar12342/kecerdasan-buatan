@@ -1,0 +1,70 @@
+========================>1
+x1=[0,0,1,1]
+x2=[0,1,0,1]
+target=[0,0,0,1]
+bias=[1,1,1,1]
+w1_delta=[]
+w2_delta=[]
+b_delta=[]
+w1_baru=[]
+w2_baru=[]
+b_baru=[]
+net=[]
+a=[]
+
+w1_awal=0
+w2_awal=0
+b_awal=0
+
+temp1=int(w1_awal)
+temp2=int(w2_awal)
+temp0=int(b_awal)
+
+===========================>2
+
+for i in range(0,4):
+    w1_delta.append(x1[i]*target[i])
+    w1_baru.append(temp1+x1[i]*target[i])
+    temp1=w1_baru[i]
+
+    w2_delta.append(x2[i]*target[i])
+    w2_baru.append(temp2+x2[i]*target[i])
+    temp2=w2_baru[i]
+
+    b_delta.append(bias[i]*target[i])
+    b_baru.append(temp0+target[i])
+    temp0=b_baru[i]
+==========================>3
+for i in range(0,4):
+    net.append(x1[i]*w1_baru[3]+x2[i]*w2_baru[3]+temp0)
+    if net[i]>=0:
+        a.append(1)
+    else:
+        a.append(0)
+==========================>4		
+print()
+print('Data X1 = ', x1)
+print('Data X2 = ', x2)
+print('Data Bias = ', bias)
+print('Data Target = ', target)
+print()
+print('Data dW1 = ', w1_delta)
+print('Data dW2 = ', w2_delta)
+print('Data db = ', b_delta)
+print()
+print('Data W1 = ',w1_baru)
+print('Data W2 = ',w2_baru)
+print('Data b = ', b_baru)
+print()
+print('Net = ', net )
+print()
+print('F(net) = ', a)
+print('Target = ',target)
+===============================>5
+print('+---------------------------------------+')
+if target[0]==a[0] and target[1]==a[1] and \
+    target[2]==a[2] and target[3]==a[3]:
+    print('| Valid                                 |')
+else :
+    print('| Invalid                               |')
+print('+---------------------------------------+')

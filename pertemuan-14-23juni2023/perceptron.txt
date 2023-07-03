@@ -1,0 +1,14 @@
+import pandas as pd 
+import numpy as np 
+from sklearn.linear_model import Perceptron
+x=[[0,0],[0,1],[1,0],[1,1]]
+y=[-1,-1,-1,1]
+
+print('X = ', x)
+print('Y = ', y)
+
+clf=Perceptron(max_iter=100, tol=0.2, verbose=True)
+clf.fit(x,y)
+prediksi=clf.predict(x)
+print('Output = ', y)
+print('Prediksi = ',prediksi)
